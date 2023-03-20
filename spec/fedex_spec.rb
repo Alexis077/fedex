@@ -8,7 +8,8 @@ RSpec.describe Fedex do
       user_credential_key: "bkjIgUhxdghtLw9L",
       user_credential_password: "6p8oOccHmDwuJZCyJs44wQ0Iw",
       account_number: "510087720",
-      meter_number: "119238439"
+      meter_number: "119238439",
+      environment: "sandbox"
     }
   end
 

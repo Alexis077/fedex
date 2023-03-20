@@ -8,9 +8,8 @@ module Fedex
           "production" => "https://ws.fedex.com:443/xml",
           "sandbox" => "https://wsbeta.fedex.com:443/xml"
         }.freeze
-        def initialize(credentials, environment)
+        def initialize(credentials)
           @credentials = credentials
-          @environment = environment
         end
 
         def get_rates(payload)
@@ -19,8 +18,8 @@ module Fedex
             payload
           )
           xml_data = sanitizer.execute!
-          response = HTTParty.post(ENVIRONMENTS[@environment], body: xml_data,
-                                                               headers: { "Content-type" => "application/xml" })
+          response = HTTParty.post((ENVIRONMENTS[@credentials[:environment]] || "sandbox"), body: xml_data,
+                                                                                            headers: { "Content-type" => "application/xml" })
           raise Error.new(message: response["CSRError"]["message"]) unless response.success?
 
           Serializers::Rate.new(response.body).execute!

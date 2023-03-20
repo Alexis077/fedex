@@ -2,6 +2,7 @@
 
 require "nokogiri"
 require "httparty"
+require "ostruct"
 require_relative "fedex/api/v1/sanitizers/rate"
 require_relative "fedex/api/v1/serializers/rate"
 require_relative "fedex/api/v1/client"
