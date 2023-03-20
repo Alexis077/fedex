@@ -9,15 +9,17 @@ module Fedex
           "sandbox" => "https://wsbeta.fedex.com:443/xml"
         }.freeze
         def initialize(credentials)
-          @credentials = credentials
+          @credentials = HashWithIndifferentAccess.new(credentials)
         end
 
         def get_rates(payload)
+          rates_payload = HashWithIndifferentAccess.new(payload)
           sanitizer = Sanitizers::Rate.new(
             @credentials,
-            payload
+            rates_payload
           )
           xml_data = sanitizer.execute!
+
           response = HTTParty.post((ENVIRONMENTS[@credentials[:environment]] || "sandbox"), body: xml_data,
                                                                                             headers: { "Content-type" => "application/xml" })
           raise Error.new(message: response["CSRError"]["message"]) unless response.success?
