@@ -1,28 +1,46 @@
-require "nokogiri"
+module Fedex
+  module Api
+    module V1
+      module Serializers
+        class Rate
+          def initialize(response)
+            @response = response
+          end
 
-class Fedex::Api::V1::Serializers::Rate
-  def initialize(response)
-    @response = response
-  end
+          def execute!
+            get_xml_data
+          end
 
-  def execute!
-    get_xml_data
-  end
+          private
 
-  private
-
-  def get_xml_data
-    doc = Nokogiri::XML(@response)
-    rate_reply_details = doc.xpath('//RateReplyDetails')
-    
-    rate_reply_details.each do |rrd|
-      shipment_rate_detail = rrd.at_xpath('./ShipmentRateDetail')
-
-      currency = shipment_rate_detail.at_xpath('.//TotalNetChargeWithDutiesAndTaxes/Currency').content
-      amount = shipment_rate_detail.at_xpath('.//TotalNetChargeWithDutiesAndTaxes/Amount').content
-      service_type = rrd.at_xpath('./ServiceType').content
-
-      {price: amount, currency: currency.downcase, service_level: {name: service_type.split("_").join(" ").titleize, token: service_type }}
+          def get_xml_data
+            doc = Nokogiri::XML(@response)
+            rate_reply_details = doc.css("RateReply RateReplyDetails")
+            rates = []
+            rate_reply_details.each do |rrd|
+              next if rrd.css("ServiceType").first.blank?
+              shipment_rate_detail = rrd.css("RatedShipmentDetails").last
+              currency = shipment_rate_detail.css("TotalNetChargeWithDutiesAndTaxes Currency").text
+              amount = shipment_rate_detail.css("TotalNetChargeWithDutiesAndTaxes Amount").text
+              
+              service_type = rrd.css("ServiceType").first.text
+              
+              rates << {
+                price: amount,
+                currency: currency.downcase,
+                service_level: {
+                  name: service_type.downcase.split("_").map!(&:capitalize).join(" "),
+                  token: service_type
+                }
+              }
+              
+              
+              
+            end
+            rates
+          end
+        end
+      end
     end
   end
 end
