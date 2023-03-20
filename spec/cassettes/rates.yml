@@ -86,20 +86,20 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Mar 2023 04:30:28 GMT
+      - Mon, 20 Mar 2023 06:17:11 GMT
       Server:
       - Apache
       Set-Cookie:
-      - siteDC=edc; path=/; domain=.fedex.com; expires=Tue, 21-Mar-2023 04:30:28 GMT;
+      - siteDC=wtc; path=/; domain=.fedex.com; expires=Tue, 21-Mar-2023 06:17:11 GMT;
         secure; HttpOnly
       X-Oracle-Dms-Rid:
       - '0'
       X-Csr-Log-Transaction-Id:
-      - 9254b503-787b-48ec-badf-7553b907fa72
+      - 1829825d-0f05-47f6-ae3d-487fca811e32
       X-Oracle-Dms-Ecid:
-      - 0abaf7d5-de2a-4648-afd3-06465c305b26-03617938
+      - 0abaf7d5-de2a-4648-afd3-06465c305b26-0363f1f8
       X-Csr-Elapsed-Millis:
-      - '1613'
+      - '1855'
       Vary:
       - Accept-Encoding
       Responsesslprotocol:
@@ -110,9 +110,9 @@ http_interactions:
       - application/xml
     body:
       encoding: ASCII-8BIT
-      string: <?xml version="1.0" encoding="UTF-8"?><RateReply xmlns="http://fedex.com/ws/rate/v13"><HighestSeverity>NOTE</HighestSeverity><Notifications><Severity>NOTE</Severity><Source>crs</Source><Code>977</Code><Message>The
-        shipdate has been changed for commitment purposes.</Message><LocalizedMessage>The
-        shipdate has been changed for commitment purposes.</LocalizedMessage></Notifications><Version><ServiceId>crs</ServiceId><Major>13</Major><Intermediate>0</Intermediate><Minor>0</Minor></Version><RateReplyDetails><PackagingType>YOUR_PACKAGING</PackagingType><DeliveryStation>MMCA
+      string: <?xml version="1.0" encoding="UTF-8"?><RateReply xmlns="http://fedex.com/ws/rate/v13"><HighestSeverity>SUCCESS</HighestSeverity><Notifications><Severity>SUCCESS</Severity><Source>crs</Source><Code>0</Code><Message>Request
+        was successfully processed. </Message><LocalizedMessage>Request was successfully
+        processed. </LocalizedMessage></Notifications><Version><ServiceId>crs</ServiceId><Major>13</Major><Intermediate>0</Intermediate><Minor>0</Minor></Version><RateReplyDetails><PackagingType>YOUR_PACKAGING</PackagingType><DeliveryStation>MMCA
         </DeliveryStation><CommitDetails><BrokerToDestinationDays>0</BrokerToDestinationDays><CommitMessages><Code>0</Code><Message>Bad
         input data</Message></CommitMessages><CommitMessages><Code>CM01</Code><Message>COMMODITY
         NOT FOUND</Message></CommitMessages><DocumentContent>NON_DOCUMENTS</DocumentContent></CommitDetails><DestinationAirportId>MTY</DestinationAirportId><IneligibleForMoneyBackGuarantee>false</IneligibleForMoneyBackGuarantee><OriginServiceArea>A1</OriginServiceArea><DestinationServiceArea>A1</DestinationServiceArea><SignatureOption>SERVICE_DEFAULT</SignatureOption><ActualRateType>PAYOR_ACCOUNT_SHIPMENT</ActualRateType><RatedShipmentDetails><ShipmentRateDetail><RateType>PAYOR_ACCOUNT_SHIPMENT</RateType><RateScale>MX0001F1_87_YOUR_PACKAGING</RateScale><RateZone>1</RateZone><RatedWeightMethod>ACTUAL</RatedWeightMethod><CurrencyExchangeRate><FromCurrency>MXN</FromCurrency><IntoCurrency>USD</IntoCurrency><Rate>0.05</Rate></CurrencyExchangeRate><DimDivisor>139</DimDivisor><DimDivisorType>COUNTRY</DimDivisorType><FuelSurchargePercent>7.0</FuelSurchargePercent><TotalBillingWeight><Units>KG</Units><Value>6.5</Value></TotalBillingWeight><TotalBaseCharge><Currency>USD</Currency><Amount>6.51</Amount></TotalBaseCharge><TotalFreightDiscounts><Currency>USD</Currency><Amount>0.0</Amount></TotalFreightDiscounts><TotalNetFreight><Currency>USD</Currency><Amount>6.51</Amount></TotalNetFreight><TotalSurcharges><Currency>USD</Currency><Amount>0.46</Amount></TotalSurcharges><TotalNetFedExCharge><Currency>USD</Currency><Amount>6.97</Amount></TotalNetFedExCharge><TotalTaxes><Currency>USD</Currency><Amount>1.12</Amount></TotalTaxes><TotalNetCharge><Currency>USD</Currency><Amount>8.09</Amount></TotalNetCharge><TotalRebates><Currency>USD</Currency><Amount>0.0</Amount></TotalRebates><TotalDutiesAndTaxes><Currency>USD</Currency><Amount>0.0</Amount></TotalDutiesAndTaxes><TotalNetChargeWithDutiesAndTaxes><Currency>USD</Currency><Amount>8.09</Amount></TotalNetChargeWithDutiesAndTaxes><Surcharges><SurchargeType>FUEL</SurchargeType><Description>Fuel</Description><Amount><Currency>USD</Currency><Amount>0.46</Amount></Amount></Surcharges><Taxes><TaxType>VAT</TaxType><Description>Mexico
@@ -127,5 +127,5 @@ http_interactions:
         </DeliveryStation><DeliveryDayOfWeek>THU</DeliveryDayOfWeek><DeliveryTimestamp>2023-03-23T21:00:00</DeliveryTimestamp><CommitDetails><ServiceType>FEDEX_EXPRESS_SAVER</ServiceType><CommitTimestamp>2023-03-23T21:00:00</CommitTimestamp><DayOfWeek>THU</DayOfWeek><DestinationServiceArea>A2</DestinationServiceArea><BrokerToDestinationDays>0</BrokerToDestinationDays><DocumentContent>NON_DOCUMENTS</DocumentContent></CommitDetails><DestinationAirportId>MTY</DestinationAirportId><IneligibleForMoneyBackGuarantee>false</IneligibleForMoneyBackGuarantee><OriginServiceArea>A2</OriginServiceArea><DestinationServiceArea>A2</DestinationServiceArea><SignatureOption>SERVICE_DEFAULT</SignatureOption><ActualRateType>PAYOR_ACCOUNT_SHIPMENT</ActualRateType><RatedShipmentDetails><ShipmentRateDetail><RateType>PAYOR_ACCOUNT_SHIPMENT</RateType><RateScale>MX0001F1_20_YOUR_PACKAGING</RateScale><RateZone>1</RateZone><RatedWeightMethod>ACTUAL</RatedWeightMethod><CurrencyExchangeRate><FromCurrency>MXN</FromCurrency><IntoCurrency>USD</IntoCurrency><Rate>0.05</Rate></CurrencyExchangeRate><DimDivisor>139</DimDivisor><DimDivisorType>COUNTRY</DimDivisorType><FuelSurchargePercent>7.0</FuelSurchargePercent><TotalBillingWeight><Units>KG</Units><Value>6.5</Value></TotalBillingWeight><TotalBaseCharge><Currency>USD</Currency><Amount>11.5</Amount></TotalBaseCharge><TotalFreightDiscounts><Currency>USD</Currency><Amount>0.0</Amount></TotalFreightDiscounts><TotalNetFreight><Currency>USD</Currency><Amount>11.5</Amount></TotalNetFreight><TotalSurcharges><Currency>USD</Currency><Amount>0.81</Amount></TotalSurcharges><TotalNetFedExCharge><Currency>USD</Currency><Amount>12.31</Amount></TotalNetFedExCharge><TotalTaxes><Currency>USD</Currency><Amount>1.97</Amount></TotalTaxes><TotalNetCharge><Currency>USD</Currency><Amount>14.28</Amount></TotalNetCharge><TotalRebates><Currency>USD</Currency><Amount>0.0</Amount></TotalRebates><TotalDutiesAndTaxes><Currency>USD</Currency><Amount>0.0</Amount></TotalDutiesAndTaxes><TotalNetChargeWithDutiesAndTaxes><Currency>USD</Currency><Amount>14.28</Amount></TotalNetChargeWithDutiesAndTaxes><Surcharges><SurchargeType>FUEL</SurchargeType><Description>Fuel</Description><Amount><Currency>USD</Currency><Amount>0.81</Amount></Amount></Surcharges><Taxes><TaxType>VAT</TaxType><Description>Mexico
         freight value-added</Description><Amount><Currency>USD</Currency><Amount>1.97</Amount></Amount></Taxes></ShipmentRateDetail></RatedShipmentDetails><RatedShipmentDetails><ShipmentRateDetail><RateType>RATED_ACCOUNT_SHIPMENT</RateType><RateScale>MX0001F1_20_YOUR_PACKAGING</RateScale><RateZone>1</RateZone><RatedWeightMethod>ACTUAL</RatedWeightMethod><CurrencyExchangeRate><FromCurrency>MXN</FromCurrency><IntoCurrency>MXN</IntoCurrency><Rate>1.0</Rate></CurrencyExchangeRate><DimDivisor>139</DimDivisor><DimDivisorType>COUNTRY</DimDivisorType><FuelSurchargePercent>7.0</FuelSurchargePercent><TotalBillingWeight><Units>KG</Units><Value>6.5</Value></TotalBillingWeight><TotalBaseCharge><Currency>MXN</Currency><Amount>214.42</Amount></TotalBaseCharge><TotalFreightDiscounts><Currency>MXN</Currency><Amount>0.0</Amount></TotalFreightDiscounts><TotalNetFreight><Currency>MXN</Currency><Amount>214.42</Amount></TotalNetFreight><TotalSurcharges><Currency>MXN</Currency><Amount>15.01</Amount></TotalSurcharges><TotalNetFedExCharge><Currency>MXN</Currency><Amount>229.43</Amount></TotalNetFedExCharge><TotalTaxes><Currency>MXN</Currency><Amount>36.73</Amount></TotalTaxes><TotalNetCharge><Currency>MXN</Currency><Amount>266.16</Amount></TotalNetCharge><TotalRebates><Currency>MXN</Currency><Amount>0.0</Amount></TotalRebates><TotalDutiesAndTaxes><Currency>MXN</Currency><Amount>0.0</Amount></TotalDutiesAndTaxes><TotalNetChargeWithDutiesAndTaxes><Currency>MXN</Currency><Amount>266.16</Amount></TotalNetChargeWithDutiesAndTaxes><Surcharges><SurchargeType>FUEL</SurchargeType><Description>Fuel</Description><Amount><Currency>MXN</Currency><Amount>15.01</Amount></Amount></Surcharges><Taxes><TaxType>VAT</TaxType><Description>Mexico
         freight value-added</Description><Amount><Currency>MXN</Currency><Amount>36.73</Amount></Amount></Taxes></ShipmentRateDetail></RatedShipmentDetails></RateReplyDetails></RateReply>
-  recorded_at: Mon, 20 Mar 2023 04:30:28 GMT
+  recorded_at: Mon, 20 Mar 2023 06:17:13 GMT
 recorded_with: VCR 6.1.0

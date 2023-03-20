@@ -33,7 +33,7 @@ RSpec.describe Fedex do
     }
   end
 
-  context "with example data" do
+  context "with normal data" do
     it "success" do
       VCR.use_cassette "rates" do
         rates = Fedex::Rates.get(credentials, quote_params)
@@ -44,6 +44,26 @@ RSpec.describe Fedex do
           expect(rate[:service_level][:name]).not_to be_nil
           expect(rate[:service_level][:token]).not_to be_nil
         end
+      end
+    end
+  end
+
+  context "with missing data" do
+    it "failure" do
+      VCR.use_cassette "rates_failure_with_missing_data" do
+        quote_params[:address_to] = nil
+        rates = Fedex::Rates.get(credentials, quote_params)
+        expect(rates.message).not_to be_nil
+      end
+    end
+  end
+
+  context "with wring data" do
+    it "failure" do
+      VCR.use_cassette "rates_failure_with_wrong_data" do
+        quote_params[:parcel][:mass_unit] = "bg"
+        rates = Fedex::Rates.get(credentials, quote_params)
+        expect(rates.message).not_to be_nil
       end
     end
   end

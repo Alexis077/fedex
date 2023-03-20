@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://wsbeta.fedex.com/xml
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <RateRequest xmlns="http://fedex.com/ws/rate/v13">
+          <WebAuthenticationDetail>
+            <UserCredential>
+              <Key>bkjIgUhxdghtLw9L</Key>
+              <Password>6p8oOccHmDwuJZCyJs44wQ0Iw</Password>
+            </UserCredential>
+          </WebAuthenticationDetail>
+          <ClientDetail>
+            <AccountNumber>510087720</AccountNumber>
+            <MeterNumber>119238439</MeterNumber>
+            <Localization>
+              <LanguageCode>es</LanguageCode>
+              <LocaleCode>mx</LocaleCode>
+            </Localization>
+          </ClientDetail>
+          <Version>
+            <ServiceId>crs</ServiceId>
+            <Major>13</Major>
+            <Intermediate>0</Intermediate>
+            <Minor>0</Minor>
+          </Version>
+          <ReturnTransitAndCommit>true</ReturnTransitAndCommit>
+          <RequestedShipment>
+            <DropoffType>REGULAR_PICKUP</DropoffType>
+            <PackagingType>YOUR_PACKAGING</PackagingType>
+            <Shipper>
+              <Address>
+                <StreetLines/>
+                <City/>
+                <StateOrProvinceCode>XX</StateOrProvinceCode>
+                <PostalCode>64000</PostalCode>
+                <CountryCode>MX</CountryCode>
+              </Address>
+            </Shipper>
+            <Recipient>
+              <Address>
+                <StreetLines/>
+                <City/>
+                <StateOrProvinceCode>XX</StateOrProvinceCode>
+                <PostalCode>64000</PostalCode>
+                <CountryCode>MX</CountryCode>
+                <Residential>false</Residential>
+              </Address>
+            </Recipient>
+            <ShippingChargesPayment>
+              <PaymentType>SENDER</PaymentType>
+            </ShippingChargesPayment>
+            <RateRequestTypes>ACCOUNT</RateRequestTypes>
+            <PackageCount>1</PackageCount>
+            <RequestedPackageLineItems>
+              <GroupPackageCount>1</GroupPackageCount>
+              <Weight>
+                <Units>BG</Units>
+                <Value>6.5</Value>
+              </Weight>
+              <Dimensions>
+                <Length>25</Length>
+                <Width>28</Width>
+                <Height>46</Height>
+                <Units>CM</Units>
+              </Dimensions>
+            </RequestedPackageLineItems>
+          </RequestedShipment>
+        </RateRequest>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Date:
+      - Mon, 20 Mar 2023 06:17:21 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - siteDC=edc; path=/; domain=.fedex.com; expires=Tue, 21-Mar-2023 06:17:21 GMT;
+        secure; HttpOnly
+      X-Oracle-Dms-Rid:
+      - '0'
+      X-Csr-Log-Transaction-Id:
+      - 31d3b720-e213-4b34-87ec-33421e71e7b4
+      X-Oracle-Dms-Ecid:
+      - 1054cf9e-8ed9-4387-b08a-5bf88ab9143b-0363e572
+      X-Csr-Elapsed-Millis:
+      - '38'
+      Responsesslprotocol:
+      - TLSv1.3
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><CSRError xmlns="http://framework.ea.fedex.com/csr/exception"><code>SchemaError</code><exceptionId>UnrecoverableClientError</exceptionId><transactionId>31d3b720-e213-4b34-87ec-33421e71e7b4</transactionId><dateTime>2023-03-20T01:17:21.436-05:00</dateTime><message>validation
+        failure for RateRequest Error:cvc-enumeration-valid: Value ''BG'' is not facet-valid
+        with respect to enumeration</message></CSRError>'
+  recorded_at: Mon, 20 Mar 2023 06:17:21 GMT
+recorded_with: VCR 6.1.0

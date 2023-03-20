@@ -20,7 +20,6 @@ module Fedex
             rate_reply_details = doc.css("RateReply RateReplyDetails")
             rates = []
             rate_reply_details.each do |rrd|
-              
               next if rrd.css("ServiceType").first.nil?
 
               shipment_rate_detail = rrd.css("RatedShipmentDetails").last

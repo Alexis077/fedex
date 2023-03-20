@@ -21,7 +21,11 @@ module Fedex
           xml_data = sanitizer.execute!
           response = HTTParty.post(ENVIRONMENTS[@environment], body: xml_data,
                                                                headers: { "Content-type" => "application/xml" })
+          raise Error.new(message: response["CSRError"]["message"]) unless response.success?
+
           Serializers::Rate.new(response.body).execute!
+        rescue StandardError => e
+          Error.new(message: e.message)
         end
       end
     end
