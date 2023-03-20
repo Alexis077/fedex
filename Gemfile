@@ -12,7 +12,7 @@ gem "rspec", "~> 3.0"
 gem "rubocop", "~> 1.21"
 
 group :test do
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem "webmock"
+  gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "vcr"
+  gem "webmock"
 end

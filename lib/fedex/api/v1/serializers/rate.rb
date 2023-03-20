@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Fedex
   module Api
     module V1
@@ -18,13 +20,15 @@ module Fedex
             rate_reply_details = doc.css("RateReply RateReplyDetails")
             rates = []
             rate_reply_details.each do |rrd|
-              next if rrd.css("ServiceType").first.blank?
+              
+              next if rrd.css("ServiceType").first.nil?
+
               shipment_rate_detail = rrd.css("RatedShipmentDetails").last
               currency = shipment_rate_detail.css("TotalNetChargeWithDutiesAndTaxes Currency").text
               amount = shipment_rate_detail.css("TotalNetChargeWithDutiesAndTaxes Amount").text
-              
+
               service_type = rrd.css("ServiceType").first.text
-              
+
               rates << {
                 price: amount,
                 currency: currency.downcase,
@@ -33,9 +37,6 @@ module Fedex
                   token: service_type
                 }
               }
-              
-              
-              
             end
             rates
           end

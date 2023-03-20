@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Fedex
   module Api
     module V1
@@ -5,7 +7,7 @@ module Fedex
         ENVIRONMENTS = {
           "production" => "https://ws.fedex.com:443/xml",
           "sandbox" => "https://wsbeta.fedex.com:443/xml"
-        }
+        }.freeze
         def initialize(credentials, environment)
           @credentials = credentials
           @environment = environment
@@ -17,7 +19,8 @@ module Fedex
             payload
           )
           xml_data = sanitizer.execute!
-          response = HTTParty.post(ENVIRONMENTS[@environment], body: xml_data, :headers => {'Content-type' => 'application/xml'})
+          response = HTTParty.post(ENVIRONMENTS[@environment], body: xml_data,
+                                                               headers: { "Content-type" => "application/xml" })
           Serializers::Rate.new(response.body).execute!
         end
       end

@@ -2,15 +2,11 @@
 
 require "nokogiri"
 require "httparty"
-require "cgi"
-require "savon"
-require_relative "fedex/api/v1/sanitizers/rate.rb"
-require_relative "fedex/api/v1/serializers/rate.rb"
-require_relative "fedex/api/v1/serializers/rate.rb"
-require_relative "fedex/api/v1/client.rb"
+require_relative "fedex/api/v1/sanitizers/rate"
+require_relative "fedex/api/v1/serializers/rate"
+require_relative "fedex/api/v1/client"
 require_relative "fedex/version"
-require_relative "fedex/rates.rb"
-
+require_relative "fedex/rates"
 
 module Fedex
   class Error < StandardError; end
