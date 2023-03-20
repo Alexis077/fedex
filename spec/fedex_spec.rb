@@ -35,7 +35,16 @@ RSpec.describe Fedex do
 
   context "with example data" do
     it "success" do
-      response = Fedex::Rates.get(credentials, quote_params)
+      VCR.use_cassette "rates" do
+        rates = Fedex::Rates.get(credentials, quote_params)
+        expect(rates.size).to be > 1
+        rates.each do |rate|
+          expect(rate[:price]).not_to be_nil
+          expect(rate[:currency]).to eq("mxn")
+          expect(rate[:service_level][:name]).not_to be_nil
+          expect(rate[:service_level][:token]).not_to be_nil
+        end
+      end
     end
   end
 end
