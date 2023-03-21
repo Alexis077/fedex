@@ -25,13 +25,13 @@ module Fedex
           )
           xml_data = sanitizer.execute!
 
-          response = HTTParty.post((ENVIRONMENTS[@credentials[:environment]] || "sandbox"), body: xml_data,
+          response = HTTParty.post(ENVIRONMENTS[(@credentials[:environment] || "sandbox")], body: xml_data,
                                                                                             headers: { "Content-type" => "application/xml" })
           raise Error.new(message: response["CSRError"]["message"]) unless response.success?
 
           Serializers::Rate.new(response.body).execute!
-        rescue => ex
-          OpenStruct.new(message: ex.message)
+        rescue StandardError => e
+          OpenStruct.new(message: e.message)
         end
       end
     end
