@@ -14,6 +14,11 @@ module Fedex
 
         def get_rates(payload)
           rates_payload = HashWithIndifferentAccess.new(payload)
+          rate_contract = Contracts::RateContract.new
+          rate_contract_result = rate_contract.call(rates_payload)
+
+          raise Error.new(message: rate_contract_result.errors.to_h) unless rate_contract_result.success?
+
           sanitizer = Sanitizers::Rate.new(
             @credentials,
             rates_payload
@@ -25,8 +30,8 @@ module Fedex
           raise Error.new(message: response["CSRError"]["message"]) unless response.success?
 
           Serializers::Rate.new(response.body).execute!
-        rescue StandardError => e
-          Error.new(message: e.message)
+        rescue => ex
+          OpenStruct.new(message: ex.message)
         end
       end
     end
