@@ -1,35 +1,89 @@
 # Fedex
-
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fedex`. To experiment with that code, run `bin/console` for an interactive prompt.
+The Fedex gem is a Ruby library that allows you to retrieve shipping rates for a given shipment by providing two addresses. It requires authentication credentials to access the Fedex API and returns a list of available shipping options with their corresponding prices.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add this line to your application's Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
+`gem 'fedex'`
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+And then execute:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+`bundle`
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+Or install it yourself as:
+
+`gem install fedex`
+
 
 ## Usage
 
-TODO: Write usage instructions here
+To retrieve shipping rates for a shipment, call the `get` method of the `Fedex::Rates` class and provide it with the required credentials and shipment details. Here's an example:
 
-## Development
+```ruby 
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+require 'fedex'
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+credentials = {
+  user_credential_key: "XXXXXXXXXXXXX",
+  user_credential_password: "XXXXXXXXXXXXX",
+  account_number: "XXXXXXXXXXXXX",
+  meter_number: "XXXXXXXXXXXXX",
+  environment: "sandbox"
+}
 
-## Contributing
+shipment_details = {
+  address_from: {
+    zip: "64000",
+    country: "MX"
+  },
+  address_to: {
+    zip: "64000",
+    country: "MX"
+  },
+  parcel: {
+    length: 25.0,
+    width: 28.0,
+    height: 46.0,
+    distance_unit: "cm",
+    weight: 6.5,
+    mass_unit: "kg"
+  }
+}
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/fedex.
+rates = Fedex::Rates.get(credentials, shipment_details)
 
-## License
+puts rates.to_s
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+```
+This will output a list of available shipping options with their corresponding prices in the selected currency, as well as the name and token of the service level. Here's an example:
+
+```ruby
+[
+  {
+    price: "524.71",
+    currency: "mxn",
+    service_level: {
+      name: "Priority Overnight",
+      token: "PRIORITY_OVERNIGHT"
+    }
+  },
+  {
+    price: "418.49",
+    currency: "mxn",
+    service_level: {
+      name: "Standard Overnight",
+      token: "STANDARD_OVERNIGHT"
+    }
+  },
+  {
+    price: "266.16",
+    currency: "mxn",
+    service_level: {
+      name: "Fedex Express Saver",
+      token: "FEDEX_EXPRESS_SAVER"
+    }
+  }
+]
+
+```
